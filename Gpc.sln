@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GpcDotNet.Interface", "GpcDotNet.Interface\GpcDotNet.Interface.csproj", "{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GpcDotNet", "GpcDotNet\GpcDotNet.vcxproj", "{27873019-B0C4-4ECC-947E-224843ABBEF4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1} = {AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}.Debug|Win32.Build.0 = Debug|Any CPU
+		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}.Debug|x64.Build.0 = Debug|Any CPU
+		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}.Release|Win32.ActiveCfg = Release|Any CPU
+		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}.Release|Win32.Build.0 = Release|Any CPU
+		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}.Release|x64.ActiveCfg = Release|Any CPU
+		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}.Release|x64.Build.0 = Release|Any CPU
+		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Debug|Win32.Build.0 = Debug|Win32
+		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Debug|x64.ActiveCfg = Debug|x64
+		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Debug|x64.Build.0 = Debug|x64
+		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Release|Win32.ActiveCfg = Release|Win32
+		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Release|Win32.Build.0 = Release|Win32
+		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Release|x64.ActiveCfg = Release|x64
+		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

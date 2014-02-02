@@ -1,0 +1,9 @@
+﻿*.user
+*.suo
+*.sdf
+*.opensdf
+/GpcDotNet.Interface/obj
+/GpcDotNet/Win32
+/GpcDotNet/x64
+/build
+*.user
