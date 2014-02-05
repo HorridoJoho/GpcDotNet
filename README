@@ -1,0 +1,6 @@
+This is a .NET wrapper for your excelent General Polygon Clipper library which can be found here:
+http://www.cs.man.ac.uk/~toby/gpc/
+
+One part is written in C# and one is written in C++/CLI.
+The C# part is a thin interface with "Any CPU" target to load the right library for the currently running architecture.
+The C++/CLI part directly compiles gpc.cpp and provides the implementation for the thin interface of the C# part.
