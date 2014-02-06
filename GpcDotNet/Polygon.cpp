@@ -1,5 +1,7 @@
 #include "Polygon.h"
 
+using namespace System::Text;
+
 namespace Gpc
 {
 	Polygon::Polygon(gpc_polygon* nativePolygon)
@@ -17,6 +19,27 @@ namespace Gpc
 	Polygon::~Polygon()
 	{
 		gpc_free_polygon(mNativePolygon);
+	}
+
+	void Polygon::Write(Stream^ output, Boolean includeHoleFlags)
+	{
+		StreamWriter^ writer = gcnew StreamWriter(output, Encoding::ASCII);
+
+		writer->WriteLine(mNativePolygon->num_contours);
+		for (int iContour = 0;iContour < mNativePolygon->num_contours;++ iContour)
+		{
+			gpc_vertex_list& nativeContour = mNativePolygon->contour[iContour];
+			writer->WriteLine(nativeContour.num_vertices);
+			if (includeHoleFlags)
+				writer->WriteLine(mNativePolygon->hole[iContour]);
+			for (int iVertex = 0;iVertex = nativeContour.num_vertices;++ iVertex)
+			{
+				gpc_vertex& nativeVertex = nativeContour.vertex[iVertex];
+				writer->Write(nativeVertex.x);
+				writer->Write(' ');
+				writer->WriteLine(nativeVertex.y);
+			}
+		}
 	}
 
 	void Polygon::AddContour(array<PointF>^ contour, Boolean isHole)

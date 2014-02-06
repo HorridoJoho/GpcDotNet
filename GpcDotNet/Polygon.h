@@ -7,6 +7,7 @@
 
 using namespace System;
 using namespace System::Drawing;
+using namespace System::IO;
 
 namespace Gpc
 {
@@ -19,6 +20,8 @@ namespace Gpc
 	public:
 		Polygon();
 		~Polygon();
+
+		virtual void Write(Stream^ output, Boolean includeHoleFlags);
 
 		virtual void AddContour(array<PointF>^ contour, Boolean isHole);
 
