@@ -15,13 +15,13 @@ namespace Gpc
 	{
 	private:
 		gpc_polygon* mNativePolygon;
-
+	internal:
 		Polygon(gpc_polygon* nativePolygon);
 	public:
 		Polygon();
 		~Polygon();
 
-		virtual void Write(Stream^ output, Boolean includeHoleFlags);
+		virtual void Write(TextWriter^ writer, Boolean includeHoleFlags);
 
 		virtual void AddContour(array<PointF>^ contour, Boolean isHole);
 

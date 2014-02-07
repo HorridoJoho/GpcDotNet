@@ -21,10 +21,8 @@ namespace Gpc
 		gpc_free_polygon(mNativePolygon);
 	}
 
-	void Polygon::Write(Stream^ output, Boolean includeHoleFlags)
+	void Polygon::Write(TextWriter^ writer, Boolean includeHoleFlags)
 	{
-		StreamWriter^ writer = gcnew StreamWriter(output, Encoding::ASCII);
-
 		writer->WriteLine(mNativePolygon->num_contours);
 		for (int iContour = 0;iContour < mNativePolygon->num_contours;++ iContour)
 		{
@@ -32,14 +30,15 @@ namespace Gpc
 			writer->WriteLine(nativeContour.num_vertices);
 			if (includeHoleFlags)
 				writer->WriteLine(mNativePolygon->hole[iContour]);
-			for (int iVertex = 0;iVertex = nativeContour.num_vertices;++ iVertex)
+			for (int iVertex = 0;iVertex < nativeContour.num_vertices;++ iVertex)
 			{
 				gpc_vertex& nativeVertex = nativeContour.vertex[iVertex];
 				writer->Write(nativeVertex.x);
-				writer->Write(' ');
+				writer->Write((Char)' ');
 				writer->WriteLine(nativeVertex.y);
 			}
 		}
+		writer->Flush();
 	}
 
 	void Polygon::AddContour(array<PointF>^ contour, Boolean isHole)

@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Reflection;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace Gpc
 {
@@ -75,8 +75,14 @@ namespace Gpc
             return _FACTORY._Create();
         }
 
+        public static IPolygon Read(TextReader reader, Boolean readHoleFlags)
+        {
+            return _FACTORY._Read(reader, readHoleFlags);
+        }
+
         protected PolygonFactory() {}
 
         protected abstract IPolygon _Create();
+        protected abstract IPolygon _Read(TextReader reader, Boolean readHoleFlags);
     }
 }

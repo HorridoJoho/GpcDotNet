@@ -7,7 +7,7 @@ namespace Gpc
 {
     public interface IPolygon : IDisposable
     {
-        void Write(Stream output, Boolean includeHoleFlags);
+        void Write(TextWriter writer, Boolean includeHoleFlags);
 
         void AddContour(PointF[] contour, Boolean isHole);
         void AddContour(PointF p1, PointF p2, PointF p3, Boolean isHole);
