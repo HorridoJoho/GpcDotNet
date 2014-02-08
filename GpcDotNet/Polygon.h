@@ -17,9 +17,10 @@ namespace Gpc
 		gpc_polygon* mNativePolygon;
 	internal:
 		Polygon(gpc_polygon* nativePolygon);
-	public:
 		Polygon();
+	public:
 		~Polygon();
+		!Polygon();
 
 		virtual void Write(TextWriter^ writer, Boolean includeHoleFlags);
 

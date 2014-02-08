@@ -18,6 +18,11 @@ namespace Gpc
 
 	Polygon::~Polygon()
 	{
+		this->!Polygon();
+	}
+
+	Polygon::!Polygon()
+	{
 		gpc_free_polygon(mNativePolygon);
 		delete mNativePolygon;
 		mNativePolygon = nullptr;

@@ -16,6 +16,7 @@ namespace Gpc
 		Tristrip(gpc_tristrip* nativeTristrip);
 	public:
 		~Tristrip();
+		!Tristrip();
 
 		virtual GraphicsPath^ ToGraphicsPath(GraphicsPathType type);
 	};

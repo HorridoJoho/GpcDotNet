@@ -10,6 +10,11 @@ namespace Gpc
 
 	Tristrip::~Tristrip()
 	{
+		this->!Tristrip();
+	}
+
+	Tristrip::!Tristrip()
+	{
 		gpc_free_tristrip(mNativeTristrip);
 		delete mNativeTristrip;
 		mNativeTristrip = nullptr;

@@ -8,6 +8,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GpcDotNet", "GpcDotNet\GpcD
 		{AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1} = {AD7E5277-F02A-4FF8-ADAE-80ADCF0216F1}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GpcDotNet.Visualizer", "GpcDotNet.Visualizer\GpcDotNet.Visualizer.csproj", "{5FE59CBC-1C6B-4ED5-A4FB-753EF27FC7FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -32,6 +34,14 @@ Global
 		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Release|Win32.Build.0 = Release|Win32
 		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Release|x64.ActiveCfg = Release|x64
 		{27873019-B0C4-4ECC-947E-224843ABBEF4}.Release|x64.Build.0 = Release|x64
+		{5FE59CBC-1C6B-4ED5-A4FB-753EF27FC7FD}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{5FE59CBC-1C6B-4ED5-A4FB-753EF27FC7FD}.Debug|Win32.Build.0 = Debug|Any CPU
+		{5FE59CBC-1C6B-4ED5-A4FB-753EF27FC7FD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5FE59CBC-1C6B-4ED5-A4FB-753EF27FC7FD}.Debug|x64.Build.0 = Debug|Any CPU
+		{5FE59CBC-1C6B-4ED5-A4FB-753EF27FC7FD}.Release|Win32.ActiveCfg = Release|Any CPU
+		{5FE59CBC-1C6B-4ED5-A4FB-753EF27FC7FD}.Release|Win32.Build.0 = Release|Any CPU
+		{5FE59CBC-1C6B-4ED5-A4FB-753EF27FC7FD}.Release|x64.ActiveCfg = Release|Any CPU
+		{5FE59CBC-1C6B-4ED5-A4FB-753EF27FC7FD}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
