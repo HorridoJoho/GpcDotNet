@@ -11,6 +11,8 @@ namespace Gpc
 	Tristrip::~Tristrip()
 	{
 		gpc_free_tristrip(mNativeTristrip);
+		delete mNativeTristrip;
+		mNativeTristrip = nullptr;
 	}
 
 	GraphicsPath^ Tristrip::ToGraphicsPath(GraphicsPathType type)

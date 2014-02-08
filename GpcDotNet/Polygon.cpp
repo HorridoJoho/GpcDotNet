@@ -19,6 +19,8 @@ namespace Gpc
 	Polygon::~Polygon()
 	{
 		gpc_free_polygon(mNativePolygon);
+		delete mNativePolygon;
+		mNativePolygon = nullptr;
 	}
 
 	void Polygon::Write(TextWriter^ writer, Boolean includeHoleFlags)

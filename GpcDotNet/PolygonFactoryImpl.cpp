@@ -2,6 +2,8 @@
 
 #include "Polygon.h"
 
+#include "gpc.h"
+
 using namespace System::Text;
 
 namespace Gpc
@@ -19,24 +21,45 @@ namespace Gpc
 		gpc_polygon* nativePolygon = new gpc_polygon;
 
 		TextReaderExtensions::SkipWhitespaces(reader);
-		TextReaderExtensions::ScanInt32(reader, nativePolygon->num_contours);
-
-		nativePolygon->contour = new gpc_vertex_list[nativePolygon->num_contours];
-		nativePolygon->hole = new int[nativePolygon->num_contours];
-
-		for (int iContour = 0; iContour < nativePolygon->num_contours;++ iContour)
+		Int32 nContours;
+		if (!TextReaderExtensions::ScanInt32(reader, nContours))
 		{
+			delete nativePolygon;
+			throw gcnew Exception("Expected countour count!");
+		}
+
+		nativePolygon->num_contours = 0;
+		nativePolygon->contour = new gpc_vertex_list[nContours];
+		nativePolygon->hole = new int[nContours];
+
+		for (int iContour = 0; iContour < nContours;++ iContour)
+		{
+			++ nativePolygon->num_contours;
+
 			gpc_vertex_list& nativeVertexList = nativePolygon->contour[iContour];
 			int& hole = nativePolygon->hole[iContour];
 
+			nativeVertexList.vertex = nullptr;
+
 			TextReaderExtensions::SkipWhitespaces(reader);
-			TextReaderExtensions::ScanInt32(reader, nativeVertexList.num_vertices);
+			if (!TextReaderExtensions::ScanInt32(reader, nativeVertexList.num_vertices))
+			{
+				gpc_free_polygon(nativePolygon);
+				delete nativePolygon;
+				throw gcnew Exception("Expected vertex count!");
+			}
+
 			hole = 0;
 			if (readHoleFlags)
 			{
 				Boolean isHole;
 				TextReaderExtensions::SkipWhitespaces(reader);
-				TextReaderExtensions::ScanBoolean(reader, isHole);
+				if (!TextReaderExtensions::ScanBoolean(reader, isHole))
+				{
+					gpc_free_polygon(nativePolygon);
+					delete nativePolygon;
+					throw gcnew Exception("Expected hole flag!");
+				}
 				if (isHole)
 				{
 					hole = 1;
@@ -49,9 +72,19 @@ namespace Gpc
 			{
 				gpc_vertex& nativeVertex = nativeVertexList.vertex[iVertex];
 				TextReaderExtensions::SkipWhitespaces(reader);
-				TextReaderExtensions::ScanDouble(reader, nativeVertex.x);
+				if (!TextReaderExtensions::ScanDouble(reader, nativeVertex.x))
+				{
+					gpc_free_polygon(nativePolygon);
+					delete nativePolygon;
+					throw gcnew Exception("Expected vertex x!");
+				}
 				TextReaderExtensions::SkipWhitespaces(reader);
-				TextReaderExtensions::ScanDouble(reader, nativeVertex.y);
+				if (!TextReaderExtensions::ScanDouble(reader, nativeVertex.y))
+				{
+					gpc_free_polygon(nativePolygon);
+					delete nativePolygon;
+					throw gcnew Exception("Expected vertex y!");
+				}
 			}
 		}
 

@@ -40,21 +40,38 @@ namespace Gpc
             }
         };
 
-		public static Boolean Skip(this TextReader reader, Char ch)
+		public static Boolean Find(this TextReader reader, Char ch, Boolean skipFound)
 		{
-			try
+			while (true)
 			{
-				if (Char.IsWhiteSpace((Char)reader.Peek()))
+				int intCh = reader.Peek();
+				if (intCh == -1)
 				{
-					reader.Read();
+					return false;
+				}
+
+				if (ch == (int)intCh)
+				{
+					if (skipFound)
+					{
+						reader.Read();
+					}
 					return true;
 				}
+
+				reader.Read();
 			}
-			catch (Exception)
+		}
+
+		public static Boolean Skip(this TextReader reader, Char ch)
+		{
+			int intCh = reader.Peek();
+			if (intCh == -1 || ch != (Char)intCh)
 			{
 				return false;
 			}
 
+			reader.Read();
 			return true;
 		}
 
@@ -63,25 +80,18 @@ namespace Gpc
 			int index = 0;
 			while (index < str.Length)
 			{
-				try
-				{
-					int intCh = reader.Peek();
-					if (intCh == -1)
-					{
-						return false;
-					}
-
-					if (str[index] != intCh)
-					{
-						return false;
-					}
-					reader.Read();
-					++index;
-				}
-				catch (Exception)
+				int intCh = reader.Peek();
+				if (intCh == -1)
 				{
 					return false;
 				}
+
+				if (str[index] != intCh)
+				{
+					return false;
+				}
+				reader.Read();
+				++index;
 			}
 
 			return true;
@@ -104,75 +114,68 @@ namespace Gpc
 		public static String ScanNumericString(this TextReader reader, NumericSignMode mode)
 		{
 			StringBuilder builder = new StringBuilder();
-			try
+			while (true)
 			{
-				while (true)
+
+				int intCh = reader.Peek();
+				if (intCh == '-' || intCh == '+')
 				{
-
-					int intCh = reader.Peek();
-					if (intCh == '-' || intCh == '+')
+					if (builder.Length > 0)
 					{
-						if (builder.Length > 0)
-						{
-							return builder.ToString();
-						}
-
-						switch (mode)
-						{
-						case NumericSignMode.AllowNone:
-							return null;
-						default:
-							if (intCh == '-' && (mode == NumericSignMode.AllowPlusOnly || mode == NumericSignMode.RequirePlus))
-							{
-								return null;
-							}
-							else if (intCh == '+' && (mode == NumericSignMode.AllowMinusOnly || mode == NumericSignMode.RequireMinus))
-							{
-								return null;
-							}
-							break;
-						}
-					}
-					else if (intCh == -1 || (intCh < '0' || intCh > '9'))
-					{
-						if (builder.Length == 0)
-						{
-							return null;
-						}
 						return builder.ToString();
 					}
 
+					switch (mode)
+					{
+					case NumericSignMode.AllowNone:
+						return null;
+					default:
+						if (intCh == '-' && (mode == NumericSignMode.AllowPlusOnly || mode == NumericSignMode.RequirePlus))
+						{
+							return null;
+						}
+						else if (intCh == '+' && (mode == NumericSignMode.AllowMinusOnly || mode == NumericSignMode.RequireMinus))
+						{
+							return null;
+						}
+						break;
+					}
+				}
+				else if (intCh == -1 || (intCh < '0' || intCh > '9'))
+				{
 					if (builder.Length == 0)
 					{
-						switch (mode)
-						{
-						case NumericSignMode.RequireOne:
-							if (intCh != '-' && intCh != '+')
-							{
-								return null;
-							}
-							break;
-						case NumericSignMode.RequirePlus:
-							if (intCh != '+')
-							{
-								return null;
-							}
-							break;
-						case NumericSignMode.RequireMinus:
-							if (intCh != '-')
-							{
-								return null;
-							}
-							break;
-						}
+						return null;
 					}
-
-					builder.Append((Char)reader.Read());
+					return builder.ToString();
 				}
-			}
-			catch (Exception)
-			{
-				return null;
+
+				if (builder.Length == 0)
+				{
+					switch (mode)
+					{
+					case NumericSignMode.RequireOne:
+						if (intCh != '-' && intCh != '+')
+						{
+							return null;
+						}
+						break;
+					case NumericSignMode.RequirePlus:
+						if (intCh != '+')
+						{
+							return null;
+						}
+						break;
+					case NumericSignMode.RequireMinus:
+						if (intCh != '-')
+						{
+							return null;
+						}
+						break;
+					}
+				}
+
+				builder.Append((Char)reader.Read());
 			}
 		}
 
