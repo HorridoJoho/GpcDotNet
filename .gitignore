@@ -1,9 +1,12 @@
-﻿*.user
+﻿# File extensions
+*.user
 *.suo
 *.sdf
 *.opensdf
+
+# Directories
 /GpcDotNet.Interface/obj
 /GpcDotNet/Win32
 /GpcDotNet/x64
+/GpcDotNet.Visualizer/obj
 /build
-*.user

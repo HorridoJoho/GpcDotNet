@@ -169,8 +169,9 @@
 			// 
 			// pbDrawing
 			// 
-			this.pbDrawing.BackColor = System.Drawing.SystemColors.Control;
+			this.pbDrawing.BackColor = System.Drawing.Color.LightBlue;
 			this.pbDrawing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pbDrawing.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pbDrawing.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pbDrawing.Location = new System.Drawing.Point(0, 0);
 			this.pbDrawing.Margin = new System.Windows.Forms.Padding(0);

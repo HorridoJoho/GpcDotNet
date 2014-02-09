@@ -89,12 +89,14 @@ namespace Gpc
 			Image image = new Bitmap((int)bounds.Width, (int)bounds.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 			using (Graphics bitmapGraphics = Graphics.FromImage(image))
 			{
+				bitmapGraphics.SmoothingMode = SmoothingMode.HighQuality;
 				bitmapGraphics.Clear(Color.LightBlue);
 				bitmapGraphics.FillPath(Brushes.LightGreen, polyPath);
-				using (Pen p = new Pen(Color.DarkGreen, 20))
+				using (Pen p = new Pen(Color.DarkGreen, Math.Max(Math.Max(bounds.Width, bounds.Height) * 0.0025f, 2)))
 				{
-					p.DashStyle = DashStyle.Dot;
 					bitmapGraphics.DrawPath(p, polyPath);
+					p.Color = Color.DarkBlue;
+					bitmapGraphics.DrawRectangle(p, 0, 0, bounds.Width, bounds.Height);
 				}
 			}
 

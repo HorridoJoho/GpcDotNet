@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Gpc
+﻿namespace Gpc
 {
 	public enum ClipOp
 	{
@@ -24,5 +19,5 @@ namespace Gpc
 		Filled,
 		Hollow,
 		All
-	};
+	}
 }
